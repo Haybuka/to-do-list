@@ -41,8 +41,13 @@ state.todos = spreadState
       let newTodo = state.todos.filter((todo) => todo.id != action.payload.id);
       state.todos = newTodo;
     },
+    toggleCompleted : (state,action) => {
+      let newTodo = state.todos.map((todo) => todo.id === action.payload.id ? {...todo,completed : !todo.completed}: todo)
+      console.log(newTodo)
+      state.todos = newTodo
+    }
   },
 });
 
-export const { isLoading,addTodo, removeTodo } = slice.actions;
+export const { isLoading,addTodo, removeTodo,toggleCompleted } = slice.actions;
 export default slice.reducer;
