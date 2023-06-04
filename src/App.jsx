@@ -21,15 +21,15 @@ function App(props) {
   dispatch(isLoading());
 
 
-  dispatch(
-    removeTodo({
-      task: "created todo",
-      id: 3,
-      completed: true,
-    })
-  );
-  dispatch(isLoading());
-console.log({props})
+  // dispatch(
+  //   removeTodo({
+  //     task: "created todo",
+  //     id: 3,
+  //     completed: true,
+  //   })
+  // );
+  // dispatch(isLoading());
+
   return (
     <>
       <p>hi</p>

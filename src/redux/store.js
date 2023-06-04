@@ -1,5 +1,7 @@
 import { applyMiddleware } from "redux";
-import { createStore } from "redux";
+// import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+
 import reducer from "./reducers/todoReducer";
 import { createLogger } from "redux-logger";
 import { reducers } from "./reducers";
@@ -13,6 +15,6 @@ const composedEnhancer = composeWithDevTools(
   applyMiddleware(logger),
 //   devToolsEnhancer({ trace: true })
 );
-const store = createStore(reducers, composedEnhancer);
+const store = configureStore({reducer:{reducers}, composedEnhancer});
 //
 export default store;

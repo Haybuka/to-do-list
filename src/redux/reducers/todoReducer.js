@@ -1,30 +1,29 @@
-import * as ActionTypes from "../types/actionTypes";
+import { createReducer } from "@reduxjs/toolkit";
+import { addTodo, isLoading, removeTodo } from "../actions/todoActions";
 
 const initialState = {
   todo: [],
-  isLoading : false
+  isLoading : false,
+  bugs : []
 };
 
-export default function todoReducer(state = initialState, action) {
-  switch (action.type) {
-    case ActionTypes.IS_LOADING:
-      return {
-        ...state,
-        isLoading:!state.isLoading,
-      };
-    case ActionTypes.ADD_TODO:
-      return {
-        ...state,
-        todo: [...state.todo, action.payload],
-      };
-    case ActionTypes.REMOVE_TODO:
-      return {
-        ...state,
-        todo: state.todo.filter((todo) => todo.id != action.payload.id),
-      };
-    default:
-      return state;
-  }
-}
+export default createReducer(initialState,{
+  //key : value
+  //actions (can also leverage on type) : functions that handle the actions
+  [isLoading.type] : (state,action) =>  !state.isLoading 
+  ,
+  addTodo : (state,action) => {
+    state.todo.push(action.payload)
+  },
+  removeTodo : (state,action) => {
+    state.todo.filter((todo) => todo.id != action.payload.id)
+  },
+  // bugResolved : (state,action) => {
+  //   const index = state.bugs.findIndex(bug => bug.id === action.payload.id)
+  //   state[index].resolved = true
+  // }
+})
+
+
 
 // state.map( todo => todo.id !== action.payload.id ? todo : {...todo, completed : true})

@@ -1,15 +1,10 @@
-import * as ActionTypes from "../types/actionTypes";
+import { createAction } from "@reduxjs/toolkit";
 
-export const addTodo = (payload) => ({
-  type: ActionTypes.ADD_TODO,
-  payload,
-});
 
-export const removeTodo = (payload) => ({
-  type: ActionTypes.REMOVE_TODO,
-  payload,
-});
+export const addTodo = createAction("addTodo")
 
-export const isLoading = () => ({
-  type: ActionTypes.IS_LOADING,
-});
+export const removeTodo = createAction("removeTodo")
+
+export const isLoading = createAction("isLoading")
+
+
