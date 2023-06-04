@@ -1,51 +1,19 @@
 import { useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-// import { addTodo, isLoading, removeTodo } from "./redux/actions/todoActions";
 import reducer, { addTodo, isLoading } from "./redux/reducers/todoReducer";
 import { connect } from "react-redux";
+import { useEffect } from "react";
+import TodoInput from "./component/todoInput/todoInput";
+import List from "./component/listTodos/list";
 
 function App(props) {
-  const [count, setCount] = useState(0);
-  const dispatch = useDispatch();
-
-
-  dispatch(
-    addTodo({
-      task: "created todo",
-      id: 3,
-      completed: true,
-    })
-  );
-
-  dispatch(isLoading());
-  dispatch(
-    addTodo({
-      task: "use create slice",
-      id: 5,
-      completed: true,
-    })
-  );
-
-  // dispatch(
-  //   removeTodo({
-  //     task: "created todo",
-  //     id: 3,
-  //     completed: true,
-  //   })
-  // );
-  // dispatch(isLoading());
-
   return (
     <>
-      <p>hi</p>
+      <TodoInput />
+      <List />
     </>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todoReducer,
-  };
-};
 export default App;
