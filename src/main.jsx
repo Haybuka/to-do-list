@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import store from "./redux/store.js";
-import { addTodo, removeTodo } from "./redux/actions/todoActions.js";
 import { Provider } from "react-redux";
 
 // const unsubscribe = store.subscribe(() => {

@@ -1,29 +1,28 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { addTodo, isLoading, removeTodo } from "../actions/todoActions";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todo: [],
-  isLoading : false,
-  bugs : []
+  isLoading: false,
 };
 
-export default createReducer(initialState,{
-  //key : value
-  //actions (can also leverage on type) : functions that handle the actions
-  [isLoading.type] : (state,action) =>  !state.isLoading 
-  ,
-  addTodo : (state,action) => {
-    state.todo.push(action.payload)
+const slice = createSlice({
+  name: "todos",
+  initialState: initialState,
+  reducers: {
+    isLoading: (state) => {state.isLoading = !state.isLoading},
+    addTodo: (state, action) => {
+      state.todo.push({
+        task: action.payload.task,
+        id: action.payload.id,
+        completed: action.payload.completed,
+      });
+    },
+    removeTodo: (state, action) => {
+      let newTodo = state.todo.filter((todo) => todo.id != action.payload.id);
+      state.todo = newTodo;
+    },
   },
-  removeTodo : (state,action) => {
-    state.todo.filter((todo) => todo.id != action.payload.id)
-  },
-  // bugResolved : (state,action) => {
-  //   const index = state.bugs.findIndex(bug => bug.id === action.payload.id)
-  //   state[index].resolved = true
-  // }
-})
+});
 
-
-
-// state.map( todo => todo.id !== action.payload.id ? todo : {...todo, completed : true})
+export const { isLoading,addTodo, removeTodo } = slice.actions;
+export default slice.reducer;

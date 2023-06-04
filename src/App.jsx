@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, isLoading, removeTodo } from "./redux/actions/todoActions";
-import reducer from "./redux/reducers/todoReducer";
+// import { addTodo, isLoading, removeTodo } from "./redux/actions/todoActions";
+import reducer, { addTodo, isLoading } from "./redux/reducers/todoReducer";
 import { connect } from "react-redux";
 
 function App(props) {
@@ -19,7 +19,13 @@ function App(props) {
   );
 
   dispatch(isLoading());
-
+  dispatch(
+    addTodo({
+      task: "use create slice",
+      id: 5,
+      completed: true,
+    })
+  );
 
   // dispatch(
   //   removeTodo({
