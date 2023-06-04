@@ -6,6 +6,10 @@ export const addTodo = (payload) => ({
 });
 
 export const removeTodo = (payload) => ({
-    type: ActionTypes.REMOVE_TODO,
-    payload,
-  });
+  type: ActionTypes.REMOVE_TODO,
+  payload,
+});
+
+export const isLoading = () => ({
+  type: ActionTypes.IS_LOADING,
+});
